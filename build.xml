@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<project name="snake_game" default="test" basedir=".">
+<project name="snake_game" default="run" basedir=".">
 
   <!-- Catalog strucure definition -->
   <property name="main.src.dir" value="src" />
