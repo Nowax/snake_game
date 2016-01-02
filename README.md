@@ -25,3 +25,8 @@ FAQ
 	In newly opened windows select any of displayed options. In build-in console you should see building result.
 
 	Important: you can still build separate files just open one of them and click "Play" button or Ctrl+F11 shortcut. JUnit environment will run test only from opened file.
+	
+	
+TravisCI
+For continues integration there is used TracisCI tool. Direct link for building page:
+	https://travis-ci.org/Nowax/snake_game
