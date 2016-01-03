@@ -1,12 +1,30 @@
 @startuml
 
-class Game
-Interface Maze {
-	addNewElement(MazeElement*)
+class Game {
+- currentDifficultLevel : EGameDifficult
++ startSpecificLevel(int)
++ main()
 }
-class MazeLevel51
-MazeLevel51 --|> Maze
 
+class MoveTimer
+Game *--> MoveTimer
+
+ScoreObserver <--* Game : <callback to startSpecificLevel()>
+
+class ScoreObserver {
+	- notifyLevelChange()
+	+ updateScore()
+	- currentScore
+	- mapOfScoresLevel
+}
+
+package "Optional - cannot be merge into one class" {
+	class MazeLevel51
+	Interface Maze {
+		+ addNewElement(MazeElement*)
+	}
+}
+MazeLevel51 --|> Maze
 Maze --> MazeElement
 
 package "Building specific maze map apperance" {
