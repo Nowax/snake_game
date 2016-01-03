@@ -1,0 +1,44 @@
+@startuml
+class Game
+
+
+interface Creator {
+	+ create() = 0
+}
+class CommonMazeCreator {
+	+ create()
+}
+class Level52MazeCreator {
+	+ create()
+}
+note "return new CommonMaze" as N1
+CommonMazeCreator .. N1
+Creator <|--> CommonMazeCreator
+
+note "return new Level52Maze" as N2
+Level52MazeCreator .. N2
+Creator <|--> Level52MazeCreator
+
+interface Maze {
+	+ getMazeSomething() = 0
+	# someMazePrivateParams
+}
+class CommonMaze {
+	+ getMazeSomething()
+}
+class Level52Maze {
+	+ getMazeSomething()
+}
+
+Maze <|-- CommonMaze
+Maze <|-- Level52Maze
+CommonMazeCreator --> CommonMaze : <creates>
+Level52MazeCreator --> Level52Maze : <creates>
+
+Game --> Maze
+Game ..> CommonMazeCreator : <uses>
+Game ..> Level52MazeCreator : <uses>
+Game --> Creator
+
+
+@enduml
