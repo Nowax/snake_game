@@ -1,0 +1,51 @@
+@startuml
+
+class Game
+Interface Maze {
+	addNewElement(MazeElement*)
+}
+class MazeLevel51
+MazeLevel51 --|> Maze
+
+Maze --> MazeElement
+
+package "Building specific maze map apperance" {
+Level51 <.. Game : <uses>
+MazeLevel51 <.. Game : <uses>
+Level51 --> MazeLevel51 : <creates>
+}
+
+enum EGameDifficulty {
+	EGameDifficulty_Level1
+	EGameDifficulty_Level2
+	...
+	EGameDifficulty_Leveln
+}
+
+note "Game should map enum EMazeMap\nto concrete maze map apperance creator" as N1
+Game *--> EGameDifficulty
+
+interface Level {
+	+ createMaze() = 0
+}
+class Level51 {
+	+ createMaze()
+}
+
+Level <|--> Level51
+Game --> Level
+
+interface MazeElement {
+	getShape()
+	getStartingPoint()
+}
+class ObstacleModel
+class FoodModel
+class BorderModel
+class SnakeModel
+MazeElement <|-- ObstacleModel
+MazeElement <|-- FoodModel
+MazeElement <|-- BorderModel
+MazeElement <|-- SnakeModel
+
+@enduml
